@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "MPTray (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "MPTray (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
