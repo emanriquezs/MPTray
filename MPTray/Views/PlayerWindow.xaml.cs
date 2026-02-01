@@ -2,6 +2,8 @@ using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Input;
 using MPTray.ViewModels;
+using System;
+using System.Runtime.InteropServices;
 using Windows.Graphics;
 
 namespace MPTray.Views;

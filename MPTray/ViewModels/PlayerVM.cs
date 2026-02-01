@@ -1,9 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Media.Imaging;
 using MPTray.Services;
 using System;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.Foundation;
@@ -33,7 +35,7 @@ namespace MPTray.ViewModels
             set => Set(ref _source, value);
         }
 
-        private string _title = string.Empty;
+        private string _title = "No media";
 
         public string Title
         {
@@ -41,7 +43,7 @@ namespace MPTray.ViewModels
             set => Set(ref _title, value);
         }
 
-        private string _artist = string.Empty;
+        private string _artist = "MPTray";
 
         public string Artist
         {
@@ -161,9 +163,13 @@ namespace MPTray.ViewModels
         [RelayCommand]
         public async Task Back()
         {
-            var manager = await GlobalSystemMediaTransportControlsSessionManager.RequestAsync();
-            var session = manager.GetCurrentSession();
-            await session?.TrySkipPreviousAsync();
+            try
+            {
+                var manager = await GlobalSystemMediaTransportControlsSessionManager.RequestAsync();
+                var session = manager.GetCurrentSession();
+                await session?.TrySkipPreviousAsync();
+            }
+            catch { }
         }
 
         [RelayCommand]
@@ -182,9 +188,13 @@ namespace MPTray.ViewModels
         [RelayCommand]
         public async Task Next()
         {
-            var manager = await GlobalSystemMediaTransportControlsSessionManager.RequestAsync();
-            var session = manager.GetCurrentSession();
-            await session?.TrySkipNextAsync();
+            try
+            {
+                var manager = await GlobalSystemMediaTransportControlsSessionManager.RequestAsync();
+                var session = manager.GetCurrentSession();
+                await session?.TrySkipNextAsync();
+            }
+            catch { }
         }
 
         private async void GetTrackInfo(GlobalSystemMediaTransportControlsSession session)
@@ -209,10 +219,6 @@ namespace MPTray.ViewModels
                         }
                     }
                     catch { }
-                }
-                else
-                {
-                    //ThumbnailSource = null; // Или картинка-заглушка
                 }
                 var playbackInfo = session.GetPlaybackInfo();
                 if (playbackInfo is null)
@@ -240,7 +246,8 @@ namespace MPTray.ViewModels
             {
                 var timeSinceUpdate = DateTimeOffset.UtcNow - timeline.LastUpdatedTime;
                 var predicted = timeline.Position + timeSinceUpdate;
-                Position = predicted > Duration ? Duration : predicted;
+                if (predicted < Duration)
+                    Position = predicted;
             }
             else if (isNewSystemData)
                 Position = timeline.Position;
@@ -254,10 +261,12 @@ namespace MPTray.ViewModels
                 return;
             session.MediaPropertiesChanged += Session_MediaPropertiesChanged;
             session.PlaybackInfoChanged += Session_PlaybackInfoChanged;
+            session.TimelinePropertiesChanged += Session_TimelinePropertiesChanged;
             token.Register(() =>
             {
                 session.MediaPropertiesChanged -= Session_MediaPropertiesChanged;
                 session.PlaybackInfoChanged -= Session_PlaybackInfoChanged;
+                session.TimelinePropertiesChanged -= Session_TimelinePropertiesChanged;
             });
             GetTrackInfo(session);
             while (!token.IsCancellationRequested)
@@ -268,6 +277,12 @@ namespace MPTray.ViewModels
                     Title = "Media not found";
                 await Task.Delay(100, token);
             }
+        }
+
+        private void Session_TimelinePropertiesChanged(GlobalSystemMediaTransportControlsSession sender, TimelinePropertiesChangedEventArgs args)
+        {
+            var timeline = sender.GetTimelineProperties();
+            Position = timeline.Position;
         }
 
         private void Session_PlaybackInfoChanged(GlobalSystemMediaTransportControlsSession sender, PlaybackInfoChangedEventArgs args)
