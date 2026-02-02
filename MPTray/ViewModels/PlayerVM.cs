@@ -147,10 +147,14 @@ namespace MPTray.ViewModels
         {
             _seekTimestamp = DateTimeOffset.UtcNow;
             _lastSystemTimelineUpdate = DateTimeOffset.MinValue;
-            var manager = await GlobalSystemMediaTransportControlsSessionManager.RequestAsync();
-            var session = manager.GetCurrentSession();
-            await session?.TryChangePlaybackPositionAsync((long)TimeSpan.FromSeconds(seconds).Ticks);
-            Position = TimeSpan.FromSeconds(seconds);
+            try
+            {
+                var manager = await GlobalSystemMediaTransportControlsSessionManager.RequestAsync();
+                var session = manager.GetCurrentSession();
+                await session?.TryChangePlaybackPositionAsync((long)TimeSpan.FromSeconds(seconds).Ticks);
+                Position = TimeSpan.FromSeconds(seconds);
+            }
+            catch { }
             _isSeeking = false;
         }
 
@@ -177,12 +181,21 @@ namespace MPTray.ViewModels
         {
             _lastUserActionTime = DateTime.UtcNow;
             IsPlaying = !IsPlaying;
-            var manager = await GlobalSystemMediaTransportControlsSessionManager.RequestAsync();
-            var session = manager.GetCurrentSession();
-            if (!IsPlaying)
-                await session?.TryPauseAsync();
-            else
-                await session?.TryPlayAsync();
+            try
+            {
+                var manager = await GlobalSystemMediaTransportControlsSessionManager.RequestAsync();
+                var session = manager.GetCurrentSession();
+                var timeline = session.GetTimelineProperties();
+                Position = timeline.Position;
+                if (!IsPlaying)
+                    await session?.TryPauseAsync();
+                else
+                    await session?.TryPlayAsync();
+            }
+            catch
+            {
+                IsPlaying = !IsPlaying;
+            }
         }
 
         [RelayCommand]

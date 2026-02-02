@@ -1,35 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ResourceDictionary
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <DataTemplate x:Key="Win11Pause">
         <Viewbox>
-            <Path 
-                Data="F1 M1025,1024z M0,0z M896.428,1024L768.428,1024Q715.428,1024 677.928,986.5 640.428,949 640.428,896L640.428,128Q640.428,75 677.928,37.5 715.428,0 768.428,0L896.428,0Q949.428,0 986.928,37.5 1024.428,75 1024.428,128L1024.428,896Q1024.428,949 986.928,986.5 949.428,1024 896.428,1024z M256.428,1024L128.428,1024Q75.428,1024 37.928,986.5 0.427999999999997,949 0.428,896L0.428,128Q0.428,75 37.928,37.5 75.428,0 128.428,0L256.428,0Q309.428,0 346.928,37.5 384.428,75 384.428,128L384.428,896Q384.428,949 346.928,986.5 309.428,1024 256.428,1024z" 
-                Fill="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"/>
+            <Path Data="F1 M1025,1024z M0,0z M896.428,1024L768.428,1024Q715.428,1024 677.928,986.5 640.428,949 640.428,896L640.428,128Q640.428,75 677.928,37.5 715.428,0 768.428,0L896.428,0Q949.428,0 986.928,37.5 1024.428,75 1024.428,128L1024.428,896Q1024.428,949 986.928,986.5 949.428,1024 896.428,1024z M256.428,1024L128.428,1024Q75.428,1024 37.928,986.5 0.427999999999997,949 0.428,896L0.428,128Q0.428,75 37.928,37.5 75.428,0 128.428,0L256.428,0Q309.428,0 346.928,37.5 384.428,75 384.428,128L384.428,896Q384.428,949 346.928,986.5 309.428,1024 256.428,1024z" Fill="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" />
         </Viewbox>
     </DataTemplate>
     <DataTemplate x:Key="Win11Next">
         <Viewbox>
-            <Path 
-                Data="F0 M14,14z M0,0z M9.512,6.056L1.693,0.656C1.297,0.407,0.815,0.474,0.467,0.737A1.142,1.142,0,0,0,0,1.632L0,12.337C0,13.221,0.979,13.793,1.693,13.341L9.513,7.974C10.163,7.535,10.163,6.494,9.513,6.055z M13.75,1.742A1,1,0,1,0,11.75,1.742L11.75,12.258A1,1,0,0,0,13.75,12.258z" 
-                Fill="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"/>
+            <Path Data="F0 M14,14z M0,0z M9.512,6.056L1.693,0.656C1.297,0.407,0.815,0.474,0.467,0.737A1.142,1.142,0,0,0,0,1.632L0,12.337C0,13.221,0.979,13.793,1.693,13.341L9.513,7.974C10.163,7.535,10.163,6.494,9.513,6.055z M13.75,1.742A1,1,0,1,0,11.75,1.742L11.75,12.258A1,1,0,0,0,13.75,12.258z" Fill="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" />
         </Viewbox>
     </DataTemplate>
     <DataTemplate x:Key="Win11Back">
-        <Viewbox
-            FlowDirection="RightToLeft">
-            <Path 
-                Data="F0 M14,14z M0,0z M9.512,6.056L1.693,0.656C1.297,0.407,0.815,0.474,0.467,0.737A1.142,1.142,0,0,0,0,1.632L0,12.337C0,13.221,0.979,13.793,1.693,13.341L9.513,7.974C10.163,7.535,10.163,6.494,9.513,6.055z M13.75,1.742A1,1,0,1,0,11.75,1.742L11.75,12.258A1,1,0,0,0,13.75,12.258z" 
-                Fill="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}">
-            </Path>
+        <Viewbox FlowDirection="RightToLeft">
+            <Path Data="F0 M14,14z M0,0z M9.512,6.056L1.693,0.656C1.297,0.407,0.815,0.474,0.467,0.737A1.142,1.142,0,0,0,0,1.632L0,12.337C0,13.221,0.979,13.793,1.693,13.341L9.513,7.974C10.163,7.535,10.163,6.494,9.513,6.055z M13.75,1.742A1,1,0,1,0,11.75,1.742L11.75,12.258A1,1,0,0,0,13.75,12.258z" Fill="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" />
         </Viewbox>
     </DataTemplate>
     <DataTemplate x:Key="Win11Play">
         <Viewbox>
-            <Path 
-                Data="F1 M448,512z M0,0z M91.2,36.9C78.8,30.1 63.8,30.4 51.6,37.6 39.4,44.8 32,57.9 32,72L32,440C32,454.1 39.5,467.2 51.6,474.4 63.7,481.6 78.8,481.9 91.2,475.1L427.2,291.1C440,284.1 448,270.6 448,256 448,241.4 440,227.9 427.2,220.9z"
-                Fill="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"/>
+            <Path Data="F1 M448,512z M0,0z M91.2,36.9C78.8,30.1 63.8,30.4 51.6,37.6 39.4,44.8 32,57.9 32,72L32,440C32,454.1 39.5,467.2 51.6,474.4 63.7,481.6 78.8,481.9 91.2,475.1L427.2,291.1C440,284.1 448,270.6 448,256 448,241.4 440,227.9 427.2,220.9z" Fill="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" />
         </Viewbox>
     </DataTemplate>
+
 </ResourceDictionary>
+
+
+
+
