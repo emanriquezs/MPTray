@@ -1,40 +1,120 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Window
     x:Class="MPTray.SettingsWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:MPTray"
+    xmlns:controls="using:CommunityToolkit.WinUI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
-    Title="MPTray">
+    xmlns:local="using:MPTray"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="MPTray"
+    mc:Ignorable="d">
     <Window.SystemBackdrop>
         <MicaBackdrop />
     </Window.SystemBackdrop>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="48"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <Grid.Resources>
+            <Style TargetType="controls:SettingsCard">
+                <Setter Property="Margin" Value="1.5"/>
+            </Style>
+        </Grid.Resources>
         <NavigationView
             Grid.Row="1"
-            IsSettingsVisible="False"
             IsBackButtonVisible="Collapsed"
-            SelectionChanged="NavigationView_SelectionChanged">
+            IsSettingsVisible="False"
+            SelectionChanged="NavigationView_SelectionChanged"
+            BorderThickness="0"
+            Margin="12">
+            <NavigationView.Resources>
+                <SolidColorBrush x:Key="NavigationViewContentBackground" Color="Transparent" />
+                <Thickness x:Key="NavigationViewContentGridBorderThickness">0</Thickness>
+                <Thickness x:Key="NavigationViewBorderThickness">0</Thickness>
+            </NavigationView.Resources>
             <NavigationView.MenuItems>
-                <NavigationViewItem Content="Плеер" Tag="player" IsSelected="True"/>
-                <NavigationViewItem Content="Приложение" Tag="app"/>
+                <NavigationViewItem
+                    Content="Плеер"
+                    IsSelected="True"
+                    Tag="player"/>
+                <NavigationViewItem Content="Приложение" Tag="app" />
             </NavigationView.MenuItems>
             <Grid>
-                <Grid
-                    x:Name="PlayerSection">
-                    <TextBlock Text="player"/>
+                <Grid x:Name="PlayerSection">
+                    <ScrollViewer>
+                        <StackPanel Padding="12">
+                            
+                            <TextBlock FontWeight="SemiBold" Text="Общее" Margin="0,0,0,4" FontSize="28"/>
+                            <controls:SettingsCard Description="Выберите один из предложенных стилей плеера" Header="Стиль">
+                                <ComboBox>
+                                    <ComboBoxItem Content="Windows 11" IsSelected="True" />
+                                    <ComboBoxItem Content="Windows 10" />
+                                </ComboBox>
+                            </controls:SettingsCard>
+                            <controls:SettingsCard Description="Цветовое оформление плеера" Header="Тема">
+                                <ComboBox>
+                                    <ComboBoxItem Content="Светлая" IsSelected="True" />
+                                    <ComboBoxItem Content="Темная" />
+                                    <ComboBoxItem Content="Система" />
+                                </ComboBox>
+                            </controls:SettingsCard>
+                            
+                            <TextBlock FontWeight="SemiBold" Text="Расширенные настройки" Margin="0,20,0,4" FontSize="28"/>
+                            <TextBlock FontWeight="SemiBold" Text="Цвета" Margin="0,0,0,4" />
+                            <controls:SettingsCard Header="Фон" Description="Задний фон плеера">
+                                <ComboBox>
+                                    <ComboBoxItem Content="Mica" IsSelected="True" />
+                                    <ComboBoxItem Content="MicaAlt" />
+                                    <ComboBoxItem Content="Акрил" />
+                                    <ComboBoxItem Content="Цвет трека" />
+                                </ComboBox>
+                            </controls:SettingsCard>
+                            <controls:SettingsCard Header="Акцентный цвет">
+                                <StackPanel Orientation="Horizontal">
+                                    <Button CornerRadius="4" Height="32" Width="32" Margin="0,0,10,0"/>
+                                    <ComboBox>
+                                        <ComboBoxItem Content="Как в системе" IsSelected="True"/>
+                                        <ComboBoxItem Content="Свой"/>
+                                    </ComboBox>
+                                </StackPanel>
+                            </controls:SettingsCard>
+                            <controls:SettingsCard Header="Цвет ползунка">
+                                <StackPanel Orientation="Horizontal">
+                                    <Button CornerRadius="4" Height="32" Width="32" Margin="0,0,10,0"/>
+                                    <ComboBox>
+                                        <ComboBoxItem Content="Акцентный цвет" IsSelected="True"/>
+                                        <ComboBoxItem Content="Свой"/>
+                                    </ComboBox>
+                                </StackPanel>
+                            </controls:SettingsCard>
+                            <controls:SettingsCard Header="Цвет рамки" Description="Цвет рамки вокруг обложки трека">
+                                <StackPanel Orientation="Horizontal">
+                                    <Button CornerRadius="4" Height="32" Width="32" Margin="0,0,10,0"/>
+                                    <ComboBox>
+                                        <ComboBoxItem Content="Акцентный цвет" IsSelected="True"/>
+                                        <ComboBoxItem Content="Свой"/>
+                                    </ComboBox>
+                                </StackPanel>
+                            </controls:SettingsCard>
+
+                            <TextBlock FontWeight="SemiBold" Text="Элементы" Margin="0,20,0,4" />
+                            <controls:SettingsCard Header="Ползунок">
+                                <CheckBox IsChecked="True" HorizontalAlignment="Right"/>
+                            </controls:SettingsCard>
+                            <controls:SettingsCard Header="Рамка" Description="Рамка вокруг обложки трека">
+                                <CheckBox IsChecked="True" HorizontalAlignment="Right"/>
+                            </controls:SettingsCard>
+                            <controls:SettingsCard Header="Тень обложки" >
+                                <CheckBox IsChecked="True" HorizontalAlignment="Right"/>
+                            </controls:SettingsCard>
+                        </StackPanel>    
+                    </ScrollViewer>
                 </Grid>
-                <Grid
-                    x:Name="AppSection"
-                    Visibility="Collapsed">
-                    <TextBlock Text="app"/>
+                <Grid x:Name="AppSection" Visibility="Collapsed">
+                    <TextBlock Text="app" />
                 </Grid>
             </Grid>
         </NavigationView>

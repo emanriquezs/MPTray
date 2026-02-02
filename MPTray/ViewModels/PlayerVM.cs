@@ -193,7 +193,7 @@ namespace MPTray.ViewModels
                     await session?.TryPlayAsync();
             }
             catch
-            {
+            {   
                 IsPlaying = !IsPlaying;
             }
         }
