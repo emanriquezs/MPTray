@@ -1,3 +1,4 @@
+using CommunityToolkit.Mvvm.Input;
 using H.NotifyIcon;
 using H.NotifyIcon.EfficiencyMode;
 using Microsoft.UI;
@@ -36,6 +37,13 @@ namespace MPTray
             InitializeComponent();
             AppWindow.IsShownInSwitchers = false;
             MainVM = new();
+        }
+
+        [RelayCommand]
+        public void ExitApplication()
+        {
+            Close();
+            Application.Current.Exit();
         }
     }
 }

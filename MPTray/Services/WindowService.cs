@@ -20,10 +20,10 @@ namespace MPTray.Services
 
         public struct POINT { public int X; public int Y; }
 
-        public static void OpenPlayerWindow(PlayerVM playerVM)
+        public static void OpenPlayerWindow(PlayerVM playerVM, SettingsVM settingsVM)
         {
             GetCursorPos(out POINT point);
-            var playerWindow = new PlayerWindow(playerVM, new PointInt32(point.X, point.Y));
+            var playerWindow = new PlayerWindow(playerVM, settingsVM, new PointInt32(point.X, point.Y));
             playerWindow.AppWindow.IsShownInSwitchers = false;
             playerWindow.Activate();
             var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(playerWindow);
@@ -32,6 +32,8 @@ namespace MPTray.Services
 
         public static void OpenSettingsWindow(SettingsVM settingsVM)
         {
+            if (settingsVM.IsSettingsOpened)
+                return;
             var settingsWindow = new SettingsWindow(settingsVM);
             settingsWindow.Activate();
         }

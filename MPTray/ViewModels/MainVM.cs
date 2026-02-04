@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using static MPTray.MainWindow;
 
 namespace MPTray.ViewModels
@@ -22,15 +23,16 @@ namespace MPTray.ViewModels
         }
 
         [RelayCommand]
-        public void ExitApplication()
-        {
-            Application.Current.Exit();
-        }
-
-        [RelayCommand]
         public void OpenSettings()
         {
             WindowService.OpenSettingsWindow(SettingsVM);
+        }
+
+        [RelayCommand]
+        public void OpenPlayer()
+        {
+            WindowService.OpenPlayerWindow(playerVM: PlayerVM, settingsVM: SettingsVM);
+            PlayerVM.Run();
         }
     }
 }

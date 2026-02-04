@@ -11,7 +11,7 @@
     <Grid>
         <tb:TaskbarIcon 
             x:Name="MyNotifyIcon" 
-            LeftClickCommand="{x:Bind MainVM.PlayerVM.OpenPlayerCommand}"
+            LeftClickCommand="{x:Bind MainVM.OpenPlayerCommand}"
             NoLeftClickDelay="True"
             ContextMenuMode="SecondWindow">
             <tb:TaskbarIcon.ContextFlyout>
@@ -20,7 +20,7 @@
                         Command="{x:Bind MainVM.OpenSettingsCommand}"
                         Text="Настройки"/>
                     <MenuFlyoutItem
-                        Command="{x:Bind MainVM.ExitApplicationCommand}"
+                        Command="{x:Bind ExitApplicationCommand}"
                         Text="Выход"/>
                 </MenuFlyout>
             </tb:TaskbarIcon.ContextFlyout>

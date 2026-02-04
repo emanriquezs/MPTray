@@ -20,16 +20,24 @@
         </Grid.RowDefinitions>
         <Grid.Resources>
             <Style TargetType="controls:SettingsCard">
-                <Setter Property="Margin" Value="1.5"/>
+                <Setter Property="Margin" Value="1.5" />
+            </Style>
+            <Style TargetType="controls:SettingsExpander">
+                <Setter Property="Margin" Value="1.5" />
+            </Style>
+            <Style TargetType="ColorPicker">
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="0,16,0,-32"/>
             </Style>
         </Grid.Resources>
         <NavigationView
             Grid.Row="1"
+            Margin="12"
+            BorderThickness="0"
             IsBackButtonVisible="Collapsed"
             IsSettingsVisible="False"
-            SelectionChanged="NavigationView_SelectionChanged"
-            BorderThickness="0"
-            Margin="12">
+            SelectionChanged="NavigationView_SelectionChanged">
             <NavigationView.Resources>
                 <SolidColorBrush x:Key="NavigationViewContentBackground" Color="Transparent" />
                 <Thickness x:Key="NavigationViewContentGridBorderThickness">0</Thickness>
@@ -39,15 +47,18 @@
                 <NavigationViewItem
                     Content="Плеер"
                     IsSelected="True"
-                    Tag="player"/>
+                    Tag="player" />
                 <NavigationViewItem Content="Приложение" Tag="app" />
             </NavigationView.MenuItems>
             <Grid>
                 <Grid x:Name="PlayerSection">
                     <ScrollViewer>
                         <StackPanel Padding="12">
-                            
-                            <TextBlock FontWeight="SemiBold" Text="Общее" Margin="0,0,0,4" FontSize="28"/>
+                            <TextBlock
+                                Margin="0,0,0,4"
+                                FontSize="28"
+                                FontWeight="SemiBold"
+                                Text="Общее" />
                             <controls:SettingsCard Description="Выберите один из предложенных стилей плеера" Header="Стиль">
                                 <ComboBox>
                                     <ComboBoxItem Content="Windows 11" IsSelected="True" />
@@ -61,10 +72,17 @@
                                     <ComboBoxItem Content="Система" />
                                 </ComboBox>
                             </controls:SettingsCard>
-                            
-                            <TextBlock FontWeight="SemiBold" Text="Расширенные настройки" Margin="0,20,0,4" FontSize="28"/>
-                            <TextBlock FontWeight="SemiBold" Text="Цвета" Margin="0,0,0,4" />
-                            <controls:SettingsCard Header="Фон" Description="Задний фон плеера">
+
+                            <TextBlock
+                                Margin="0,20,0,4"
+                                FontSize="28"
+                                FontWeight="SemiBold"
+                                Text="Расширенные настройки" />
+                            <TextBlock
+                                Margin="0,0,0,4"
+                                FontWeight="SemiBold"
+                                Text="Цвета" />
+                            <controls:SettingsCard Description="Задний фон плеера" Header="Фон">
                                 <ComboBox>
                                     <ComboBoxItem Content="Mica" IsSelected="True" />
                                     <ComboBoxItem Content="MicaAlt" />
@@ -72,45 +90,87 @@
                                     <ComboBoxItem Content="Цвет трека" />
                                 </ComboBox>
                             </controls:SettingsCard>
-                            <controls:SettingsCard Header="Акцентный цвет">
+                            <controls:SettingsExpander Header="Акцентный цвет" >
+                                <controls:SettingsExpander.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button
+                                            Width="32"
+                                            Height="32"
+                                            Margin="0,0,10,0"
+                                            CornerRadius="4">
+                                        </Button>
+                                        <ComboBox>
+                                            <ComboBoxItem Content="Как в системе" IsSelected="True" />
+                                            <ComboBoxItem Content="Свой" />
+                                        </ComboBox>
+                                    </StackPanel>
+                                </controls:SettingsExpander.Content>
+                                <controls:SettingsExpander.ItemsHeader>
+                                    <Grid Background="White">
+                                        <ColorPicker Orientation="Horizontal" IsEnabled="False" />
+                                    </Grid>
+                                </controls:SettingsExpander.ItemsHeader>
+                            </controls:SettingsExpander>
+                            <controls:SettingsExpander Header="Цвет ползунка">
+                                <controls:SettingsExpander.ItemsHeader>
+                                    <Grid Background="White">
+                                        <ColorPicker Orientation="Horizontal" IsEnabled="False" />
+                                    </Grid>
+                                </controls:SettingsExpander.ItemsHeader>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button CornerRadius="4" Height="32" Width="32" Margin="0,0,10,0"/>
+                                    <Button
+                                        Width="32"
+                                        Height="32"
+                                        Margin="0,0,10,0"
+                                        CornerRadius="4" />
                                     <ComboBox>
-                                        <ComboBoxItem Content="Как в системе" IsSelected="True"/>
-                                        <ComboBoxItem Content="Свой"/>
+                                        <ComboBoxItem Content="Акцентный цвет" IsSelected="True" />
+                                        <ComboBoxItem Content="Свой" />
                                     </ComboBox>
                                 </StackPanel>
-                            </controls:SettingsCard>
-                            <controls:SettingsCard Header="Цвет ползунка">
+                            </controls:SettingsExpander>
+                            <controls:SettingsExpander Description="Цвет рамки вокруг обложки трека" Header="Цвет рамки">
+                                <controls:SettingsExpander.ItemsHeader>
+                                    <Grid Background="White">
+                                        <ColorPicker Orientation="Horizontal" IsEnabled="False" />
+                                    </Grid>
+                                </controls:SettingsExpander.ItemsHeader>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button CornerRadius="4" Height="32" Width="32" Margin="0,0,10,0"/>
+                                    <Button
+                                        Width="32"
+                                        Height="32"
+                                        Margin="0,0,10,0"
+                                        CornerRadius="4" />
                                     <ComboBox>
-                                        <ComboBoxItem Content="Акцентный цвет" IsSelected="True"/>
-                                        <ComboBoxItem Content="Свой"/>
+                                        <ComboBoxItem Content="Акцентный цвет" IsSelected="True" />
+                                        <ComboBoxItem Content="Свой" />
                                     </ComboBox>
                                 </StackPanel>
-                            </controls:SettingsCard>
-                            <controls:SettingsCard Header="Цвет рамки" Description="Цвет рамки вокруг обложки трека">
-                                <StackPanel Orientation="Horizontal">
-                                    <Button CornerRadius="4" Height="32" Width="32" Margin="0,0,10,0"/>
-                                    <ComboBox>
-                                        <ComboBoxItem Content="Акцентный цвет" IsSelected="True"/>
-                                        <ComboBoxItem Content="Свой"/>
-                                    </ComboBox>
-                                </StackPanel>
-                            </controls:SettingsCard>
+                            </controls:SettingsExpander>
 
-                            <TextBlock FontWeight="SemiBold" Text="Элементы" Margin="0,20,0,4" />
+                            <TextBlock
+                                Margin="0,20,0,4"
+                                FontWeight="SemiBold"
+                                Text="Элементы" />
                             <controls:SettingsCard Header="Ползунок">
-                                <CheckBox IsChecked="True" HorizontalAlignment="Right"/>
+                                <ToggleSwitch
+                                    IsOn="{x:Bind SettingsVM.IsSliderOn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    OffContent=""
+                                    OnContent="" />
                             </controls:SettingsCard>
-                            <controls:SettingsCard Header="Рамка" Description="Рамка вокруг обложки трека">
-                                <CheckBox IsChecked="True" HorizontalAlignment="Right"/>
+                            <controls:SettingsCard Description="Рамка вокруг обложки трека" Header="Рамка">
+                                <ToggleSwitch
+                                    IsOn="{x:Bind SettingsVM.IsCoverBorderOn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    OffContent=""
+                                    OnContent="" />
                             </controls:SettingsCard>
-                            <controls:SettingsCard Header="Тень обложки" >
-                                <CheckBox IsChecked="True" HorizontalAlignment="Right"/>
+                            <controls:SettingsCard Header="Тень обложки">
+                                <ToggleSwitch
+                                    IsOn="{x:Bind SettingsVM.IsCoverShadowOn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    OffContent=""
+                                    OnContent=""/>
                             </controls:SettingsCard>
-                        </StackPanel>    
+                        </StackPanel>
                     </ScrollViewer>
                 </Grid>
                 <Grid x:Name="AppSection" Visibility="Collapsed">

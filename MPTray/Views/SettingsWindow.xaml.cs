@@ -15,6 +15,8 @@ public sealed partial class SettingsWindow : Window
     {
         SettingsVM = settingsVM;
         InitializeComponent();
+        SettingsVM.IsSettingsOpened = true;
+        Closed += SettingsWindow_Closed;
         ExtendsContentIntoTitleBar = true;
         if (Application.Current?.RequestedTheme == ApplicationTheme.Light)
             return;
@@ -24,6 +26,11 @@ public sealed partial class SettingsWindow : Window
         titleBar.ButtonForegroundColor = Colors.White;
         titleBar.ButtonHoverBackgroundColor = Color.FromArgb(25, 255, 255, 255);
         titleBar.ButtonHoverForegroundColor = Colors.White;
+    }
+
+    private void SettingsWindow_Closed(object sender, WindowEventArgs args)
+    {
+        SettingsVM.IsSettingsOpened = false;
     }
 
     private void NavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)

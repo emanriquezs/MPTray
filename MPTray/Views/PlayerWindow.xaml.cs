@@ -11,11 +11,15 @@ namespace MPTray.Views;
 public sealed partial class PlayerWindow : Window
 {
     public PlayerVM PlayerVM;
+
+    public SettingsVM SettingsVM;
+
     private PointInt32 _point;
     
-    public PlayerWindow(PlayerVM playerVM, PointInt32 point)
+    public PlayerWindow(PlayerVM playerVM, SettingsVM settingsVM, PointInt32 point)
     {
         PlayerVM = playerVM;
+        SettingsVM = settingsVM;
         _point = point;
         InitializeComponent();
         AppWindow.Resize(new SizeInt32(400, 150));

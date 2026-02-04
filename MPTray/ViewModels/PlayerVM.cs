@@ -103,14 +103,6 @@ namespace MPTray.ViewModels
 
         public double DurationSeconds => Duration.TotalSeconds; 
 
-        /*private GlobalSystemMediaTransportControlsSessionPlaybackStatus _status;
-
-        public GlobalSystemMediaTransportControlsSessionPlaybackStatus Status
-        {
-            get => _status;
-            set => Set(ref _status, value);
-        }*/
-
         private bool _isPlaying;
 
         public bool IsPlaying
@@ -125,15 +117,6 @@ namespace MPTray.ViewModels
         {
             get => _thumbnailSource;
             set => Set(ref _thumbnailSource, value);
-        }
-
-        [RelayCommand]
-        public void OpenPlayer()
-        {
-            WindowService.OpenPlayerWindow(playerVM: this);
-            _updateCts?.Cancel();
-            _updateCts = new CancellationTokenSource();
-            _ = UpdatingAsync(_updateCts.Token);
         }
 
         [RelayCommand]
@@ -208,6 +191,13 @@ namespace MPTray.ViewModels
                 await session?.TrySkipNextAsync();
             }
             catch { }
+        }
+
+        public void Run()
+        {
+            _updateCts?.Cancel();
+            _updateCts = new CancellationTokenSource();
+            _ = UpdatingAsync(_updateCts.Token);
         }
 
         private async void GetTrackInfo(GlobalSystemMediaTransportControlsSession session)
